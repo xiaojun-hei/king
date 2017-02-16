@@ -1,0 +1,23 @@
+In ./src directory, you just need to change king.c file. 
+
+There are two files king_onefile.c, and king_twofile.c for king.c
+
+king_onefile.c only reads one file which contains IPs to probe. Then it adds thoses IPs to an array A[0...n-1], does the following:
+
+for(i=0;i<n,i++)
+  fetch A[i];
+  for(j=i+1; j<n;j++)
+    fetch A[j];
+    measure RTT between A[i] and A[j]
+Usage: ./king -f ipfile -o outputfile (if no -o option, there is default outputfile, but it needs to be changed depending on the directory installed)
+
+king_twofile.c reads two files, one contains source IPs, the other contains target IPs. For example, it adds IPs from one file into array A[0..n-1], and IPs from the other file into array B[0..m-1], does following:
+for(i=0;i<n:i++)
+  fetch A[i]
+  for(j=0;j<m;j++)
+     fetch B[j];
+     measure RTT between A[i] and B[j];
+Usage: ./king -f ipfile1 -p ipfile2 -o outputfile 
+
+you can use either file depends on your requirements.
+
